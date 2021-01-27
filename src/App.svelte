@@ -1,8 +1,15 @@
 <script>
 	export let name;
+	let fetched = false;
 	let count = 0;
 	function handleClick() {
 		count += 1;
+		fetched = false;
+	}
+
+	const fetch = () => {
+		fetched = true;
+		count = 0;
 	}
 </script>
 
@@ -12,6 +19,16 @@
 	<button on:click={handleClick}>
 		Clicked {count} {count === 1 ? 'time' : 'times'}
 	</button>
+
+	<button on:click="{fetch}">
+		Fetch Data
+	</button>
+
+	<!-- render conditionally -->
+	{#if fetched}
+		<div>done!</div>
+	{/if}
+	
 </main>
 
 <style>
